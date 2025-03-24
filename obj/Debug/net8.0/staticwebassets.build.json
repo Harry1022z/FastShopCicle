@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZAXpMf1QUxOjFCyDoOSXuXpW9M84jviJ4fA9pNXfGLU=",
+  "Hash": "LNoMosG+5PYDTbqGjJaEmvWTpvsL97aAeNW5yvah4Io=",
   "Source": "TiendaCiclismo",
   "BasePath": "_content/TiendaCiclismo",
   "Mode": "Default",
@@ -4630,8 +4630,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5x158wi5uk",
-      "Integrity": "+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs=",
+      "Fingerprint": "rcchkjjdhl",
+      "Integrity": "y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\scss\\_reboot.scss"
@@ -26558,7 +26558,7 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/scss/_reboot.5x158wi5uk.scss",
+      "Route": "lib/bootstrap/scss/_reboot.rcchkjjdhl.scss",
       "AssetFile": "C:\\Users\\nosoy\\Documents\\Proyectos\\TiendaCiclismo\\wwwroot\\lib\\bootstrap\\scss\\_reboot.scss",
       "Selectors": [],
       "ResponseHeaders": [
@@ -26568,7 +26568,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12438"
+          "Value": "12465"
         },
         {
           "Name": "Content-Type",
@@ -26576,11 +26576,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs=\""
+          "Value": "\"y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 22:39:38 GMT"
+          "Value": "Mon, 24 Mar 2025 21:40:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -26590,7 +26590,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5x158wi5uk"
+          "Value": "rcchkjjdhl"
         },
         {
           "Name": "label",
@@ -26598,7 +26598,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs="
+          "Value": "sha256-y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k="
         }
       ]
     },
@@ -26613,7 +26613,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12438"
+          "Value": "12465"
         },
         {
           "Name": "Content-Type",
@@ -26621,11 +26621,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs=\""
+          "Value": "\"y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Mar 2025 22:39:38 GMT"
+          "Value": "Mon, 24 Mar 2025 21:40:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -26635,7 +26635,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs="
+          "Value": "sha256-y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k="
         }
       ]
     },

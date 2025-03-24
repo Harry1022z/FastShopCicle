@@ -3810,8 +3810,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5x158wi5uk</Fingerprint>
-      <Integrity>+YAJdbc1AztoczzQZQe0IuGox5ccJQtrFWdUKR+0SPs=</Integrity>
+      <Fingerprint>rcchkjjdhl</Fingerprint>
+      <Integrity>y4gzdjwUP4dsqurlfgXd/+ShAVOJVRBr+DJvYMAaX8k=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\scss\_reboot.scss'))</OriginalItemSpec>

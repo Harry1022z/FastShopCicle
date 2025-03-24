@@ -23,6 +23,7 @@ namespace TiendaCiclismo.Controllers
                 .Include(f => f.Vendedor)
                 .Include(f => f.Producto)
                 .ToListAsync();
+
             return View(facturas);
         }
 
@@ -88,15 +89,16 @@ namespace TiendaCiclismo.Controllers
                 .Include(f => f.Vendedor)
                 .Include(f => f.Producto)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (factura == null) return NotFound();
 
             return View(factura);
         }
 
-        // POST: Facturas/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Facturas/Delete
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var factura = await _context.Facturas.FindAsync(id);
             if (factura != null)
@@ -104,6 +106,7 @@ namespace TiendaCiclismo.Controllers
                 _context.Facturas.Remove(factura);
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToAction(nameof(Index));
         }
     }
