@@ -1,0 +1,31 @@
+@model TiendaCiclismo.Models.Factura
+@{
+    ViewData["Title"] = "Detalles de Factura";
+}
+
+<div class="container mt-5">
+    <h1 class="fw-bold mb-4">Detalles de la Factura #@Model.Id</h1>
+
+    <div class="card shadow p-4">
+        <dl class="row">
+            <dt class="col-sm-3">Producto</dt>
+            <dd class="col-sm-9">@Model.Producto?.Nombre</dd>
+
+            <dt class="col-sm-3">Vendedor</dt>
+            <dd class="col-sm-9">@Model.Vendedor?.Nombre</dd>
+
+            <dt class="col-sm-3">Cantidad</dt>
+            <dd class="col-sm-9">@Model.Cantidad</dd>
+
+            <dt class="col-sm-3">Fecha</dt>
+            <dd class="col-sm-9">@Model.Fecha.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3">Total</dt>
+            <dd class="col-sm-9 text-success fw-bold">$@Model.Total.ToString("N0")</dd>
+        </dl>
+
+        <a asp-action="Index" class="btn btn-secondary mt-3">
+            <i class="fa fa-arrow-left"></i> Volver al listado
+        </a>
+    </div>
+</div>

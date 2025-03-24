@@ -1,0 +1,26 @@
+@model TiendaCiclismo.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<div class="container mt-4">
+    <h2 class="fw-bold mb-4 text-danger">¿Estás seguro de eliminar este producto?</h2>
+
+    <div class="card shadow-sm p-4">
+        <h4 class="fw-bold">@Model.Nombre</h4>
+        <p><strong>Precio:</strong> $@Model.Precio.ToString("N2")</p>
+        <p><strong>Categoría:</strong> @Model.Categoria</p>
+        <p><strong>Stock:</strong> @Model.Stock unidades</p>
+    </div>
+
+    <form asp-action="Delete" class="mt-4">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">
+            <i class="fa fa-trash"></i> Eliminar
+        </button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">
+            <i class="fa fa-arrow-left"></i> Cancelar
+        </a>
+    </form>
+</div>

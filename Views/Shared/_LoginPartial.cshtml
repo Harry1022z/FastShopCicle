@@ -1,0 +1,13 @@
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div>
+        <p>Bienvenido, @User.Identity.Name</p>
+        <a href="/Account/Logout">Cerrar sesión</a>
+    </div>
+}
+else
+{
+    <div>
+        <a href="/Account/Login">Iniciar sesión</a>
+    </div>
+}

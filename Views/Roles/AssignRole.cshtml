@@ -1,0 +1,33 @@
+@model TiendaCiclismo.Models.AsignarRolViewModel
+
+@{
+    ViewData["Title"] = "Asignar Rol";
+}
+
+<div class="container mt-5">
+    <h2 class="fw-bold mb-4 text-center">Asignar rol a @Model.Usuario.NombreCompleto</h2>
+
+    <form asp-action="AssignRole">
+        <input type="hidden" asp-for="Usuario.Id" />
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Usuario:</label>
+            <p>@Model.Usuario.NombreCompleto (@Model.Usuario.Email)</p>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RolId" class="form-label fw-bold">Seleccionar Rol:</label>
+            <select asp-for="RolId" asp-items="Model.Roles" class="form-select" required>
+                <option value="">-- Selecciona un rol --</option>
+            </select>
+            <span asp-validation-for="RolId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-check"></i> Guardar Asignación
+        </button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">
+            <i class="fa fa-arrow-left"></i> Volver
+        </a>
+    </form>
+</div>

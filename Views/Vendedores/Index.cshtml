@@ -1,0 +1,36 @@
+@model IEnumerable<TiendaCiclismo.Models.Vendedor>
+
+@{
+    ViewData["Title"] = "Vendedores";
+}
+
+<h1 class="text-center mb-4">Listado de Vendedores</h1>
+
+<p class="text-end mb-3">
+    <a class="btn btn-success" asp-action="Create">Crear nuevo vendedor</a>
+</p>
+
+<table class="table table-striped table-hover shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Correo</td>
+            <td>@item.Telefono</td>
+            <td>
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

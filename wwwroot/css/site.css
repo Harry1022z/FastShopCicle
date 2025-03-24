@@ -1,0 +1,26 @@
+body {
+  padding-top: 70px;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #343a40;
+  margin-top: 50px;
+}

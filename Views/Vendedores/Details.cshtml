@@ -1,0 +1,25 @@
+@model TiendaCiclismo.Models.Vendedor
+
+@{
+    ViewData["Title"] = "Detalles del Vendedor";
+}
+
+<h1 class="text-center mb-4">Detalles del Vendedor</h1>
+
+<div class="card shadow-sm p-4">
+    <dl class="row">
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+
+        <dt class="col-sm-3">Email:</dt>
+        <dd class="col-sm-9">@Model.Correo</dd>
+
+        <dt class="col-sm-3">Teléfono:</dt>
+        <dd class="col-sm-9">@Model.Telefono</dd>
+    </dl>
+</div>
+
+<div class="mt-4 d-flex justify-content-between">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>

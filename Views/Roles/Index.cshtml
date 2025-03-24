@@ -1,0 +1,35 @@
+@model IEnumerable<TiendaCiclismo.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Gestión de Roles";
+}
+
+<div class="container mt-5">
+    <h1 class="fw-bold text-center mb-4">Asignar Roles a Usuarios</h1>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre de Usuario</th>
+                <th>Email</th>
+                <th>Rol Actual</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.NombreCompleto</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.Rol?.Nombre ?? "Sin rol"</td>
+                <td>
+                    <a asp-action="AssignRole" asp-route-id="@usuario.Id" class="btn btn-primary btn-sm">
+                        <i class="fa fa-user-tag"></i> Asignar Rol
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

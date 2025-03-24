@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Confirmar cierre de sesión";
+}
+
+<div class="text-center mt-5">
+    <h2>¿Seguro que deseas cerrar sesión?</h2>
+
+    <form method="post" asp-action="Logout">
+        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+    </form>
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-3">Cancelar</a>
+</div>

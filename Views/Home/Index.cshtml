@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Bienvenido a la Tienda de Ciclismo 🚴‍♂️</h1>
+        <p class="lead text-muted">Gestiona fácilmente productos, vendedores y facturas desde un solo lugar.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow h-100 text-center border-0">
+                <div class="card-body">
+                    <i class="fa fa-bicycle fa-4x text-primary mb-3"></i>
+                    <h4 class="card-title fw-bold">Productos</h4>
+                    <p class="card-text">Consulta, administra y crea nuevos productos disponibles para la venta.</p>
+                    <a asp-controller="Productos" asp-action="Index" class="btn btn-outline-primary mt-2">
+                        Ver Productos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100 text-center border-0">
+                <div class="card-body">
+                    <i class="fa fa-user-tie fa-4x text-success mb-3"></i>
+                    <h4 class="card-title fw-bold">Vendedores</h4>
+                    <p class="card-text">Gestiona los vendedores encargados de ofrecer los productos de la tienda.</p>
+                    <a asp-controller="Vendedores" asp-action="Index" class="btn btn-outline-success mt-2">
+                        Ver Vendedores
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100 text-center border-0">
+                <div class="card-body">
+                    <i class="fa fa-file-invoice-dollar fa-4x text-danger mb-3"></i>
+                    <h4 class="card-title fw-bold">Facturas</h4>
+                    <p class="card-text">Consulta y administra todas las facturas generadas en las ventas.</p>
+                    <a asp-controller="Facturas" asp-action="Index" class="btn btn-outline-danger mt-2">
+                        Ver Facturas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+    <hr />
+    <p>© @DateTime.Now.Year Tienda de Ciclismo | Desarrollado por Harrison Steven Osorio Patarroyo</p>
+</footer>
