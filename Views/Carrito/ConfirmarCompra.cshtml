@@ -1,0 +1,23 @@
+@model TiendaCiclismo.Models.ConfirmarCompraViewModel
+
+<h1>Confirmar Compra</h1>
+
+@if (Model.Vendedores.Any())
+{
+    <form asp-action="ProcesarCompra" method="post">
+        <label for="vendedorId">Selecciona un vendedor:</label>
+        <select id="vendedorId" name="VendedorId" class="form-control" required>
+            <option value="">-- Seleccionar --</option>
+            @foreach (var vendedor in Model.Vendedores)
+            {
+                <option value="@vendedor.Id">@vendedor.Nombre</option>
+            }
+        </select>
+
+        <button type="submit" class="btn btn-success mt-3">Confirmar Compra</button>
+    </form>
+}
+else
+{
+    <p class="text-danger">⚠ No hay vendedores registrados. Agrega un vendedor antes de confirmar la compra.</p>
+}

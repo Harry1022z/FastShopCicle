@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ namespace TiendaCiclismo.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; } 
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -27,5 +28,9 @@ namespace TiendaCiclismo.Models
 
         public Vendedor? Vendedor { get; set; }
         public Producto? Producto { get; set; }
+
+        [Required(ErrorMessage = "La descripción es obligatoria.")]
+        public string Descripcion { get; set; } = "Sin descripción.";
+
     }
 }

@@ -1,0 +1,124 @@
+@model TiendaCiclismo.Models.Compra
+
+<h1>Realizar Compra</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="VendedorId">Seleccione el Vendedor:</label>
+        <select asp-for="VendedorId" class="form-control">
+            <option value="">-- Seleccione un vendedor --</option>
+            @foreach (var vendedor in ViewBag.Vendedores)
+            {
+                <option value="@vendedor.Value">@vendedor.Text</option>
+            }
+        </select>
+        <span asp-validation-for="VendedorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Productos</label>
+        <table class="table" id="tablaProductos">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se agregarán los productos dinámicamente -->
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" onclick="agregarProducto()">Añadir Producto</button>
+    </div>
+
+    <div class="form-group">
+        <label for="Total">Total de la Compra:</label>
+        <input asp-for="Total" id="totalCompra" class="form-control" readonly />
+        <span asp-validation-for="Total" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Confirmar Compra</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+<script>
+    let productos = @Html.Raw(Json.Serialize(ViewBag.Productos));
+
+    function agregarProducto() {
+        let tabla = document.getElementById("tablaProductos").getElementsByTagName('tbody')[0];
+
+        let fila = tabla.insertRow();
+        let celdaProducto = fila.insertCell(0);
+        let celdaCantidad = fila.insertCell(1);
+        let celdaPrecio = fila.insertCell(2);
+        let celdaTotal = fila.insertCell(3);
+        let celdaAcciones = fila.insertCell(4);
+
+        let select = document.createElement("select");
+        select.classList.add("form-control");
+        select.onchange = function () { actualizarPrecio(this, fila); };
+
+        let optionDefault = document.createElement("option");
+        optionDefault.text = "-- Seleccione un producto --";
+        optionDefault.value = "";
+        select.appendChild(optionDefault);
+
+        productos.forEach(producto => {
+            let option = document.createElement("option");
+            option.text = producto.nombre;
+            option.value = producto.id;
+            option.setAttribute("data-precio", producto.precio);
+            select.appendChild(option);
+        });
+
+        celdaProducto.appendChild(select);
+
+        let inputCantidad = document.createElement("input");
+        inputCantidad.type = "number";
+        inputCantidad.value = 1;
+        inputCantidad.classList.add("form-control");
+        inputCantidad.min = 1;
+        inputCantidad.oninput = function () { actualizarTotal(fila); };
+        celdaCantidad.appendChild(inputCantidad);
+
+        celdaPrecio.innerText = "$0";
+        celdaTotal.innerText = "$0";
+
+        let btnEliminar = document.createElement("button");
+        btnEliminar.classList.add("btn", "btn-danger");
+        btnEliminar.innerText = "Eliminar";
+        btnEliminar.onclick = function () { eliminarFila(fila); };
+        celdaAcciones.appendChild(btnEliminar);
+    }
+
+    function actualizarPrecio(select, fila) {
+        let precio = select.options[select.selectedIndex].getAttribute("data-precio");
+        fila.cells[2].innerText = "$" + (precio ? precio : "0");
+        actualizarTotal(fila);
+    }
+
+    function actualizarTotal(fila) {
+        let cantidad = fila.cells[1].getElementsByTagName("input")[0].value;
+        let precio = fila.cells[2].innerText.replace("$", "");
+        let total = cantidad * parseFloat(precio || 0);
+        fila.cells[3].innerText = "$" + total.toFixed(2);
+        calcularTotalCompra();
+    }
+
+    function calcularTotalCompra() {
+        let total = 0;
+        document.querySelectorAll("#tablaProductos tbody tr").forEach(fila => {
+            let totalFila = parseFloat(fila.cells[3].innerText.replace("$", "")) || 0;
+            total += totalFila;
+        });
+        document.getElementById("totalCompra").value = total.toFixed(2);
+    }
+
+    function eliminarFila(fila) {
+        fila.remove();
+        calcularTotalCompra();
+    }
+</script>

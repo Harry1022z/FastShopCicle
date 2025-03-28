@@ -27,7 +27,7 @@ else
             @foreach (var factura in Model)
             {
                 <tr>
-                    <td>@factura.Producto.Nombre</td>
+                    <td>@factura.Producto?.Nombre ?? "N/A"</td>
                     <td>@factura.Cantidad</td>
                     <td>@factura.Fecha.ToShortDateString()</td>
                     <td>$@factura.Total.ToString("N0")</td>

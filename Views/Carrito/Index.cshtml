@@ -1,0 +1,47 @@
+@model List<TiendaCiclismo.Models.CarritoItem>
+
+<h1>Carrito de Compras</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Producto.Nombre</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.Producto.Precio.ToString("C")</td>
+                    <td>@(item.Cantidad * item.Producto.Precio)</td>
+                    <td>
+                        <a asp-action="Eliminar" asp-route-productoId="@item.ProductoId" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form asp-action="ConfirmarCompra" method="post">
+        <label for="VendedorId">Selecciona un vendedor:</label>
+        <select name="VendedorId" id="VendedorId" required>
+            @foreach (var vendedor in ViewBag.Vendedores)
+            {
+                <option value="@vendedor.Id">@vendedor.Nombre</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-success">Confirmar Compra</button>
+    </form>
+}
+else
+{
+    <p class="text-danger">⚠ No hay productos en el carrito.</p>
+}

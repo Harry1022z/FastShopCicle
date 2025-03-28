@@ -1,0 +1,13 @@
+@model TiendaCiclismo.Models.Factura
+
+<h1 class="text-center">Factura de Compra</h1>
+
+<div class="card shadow-sm p-4">
+    <h4><strong>Fecha:</strong> @Model.Fecha.ToString("dd/MM/yyyy HH:mm")</h4>
+    <h4><strong>Total:</strong> $@Model.Total.ToString("N2")</h4>
+    <h4><strong>Descripción:</strong> @Model.Descripcion</h4>
+</div>
+
+<div class="mt-4 text-center">
+    <a asp-action="Index" asp-controller="Productos" class="btn btn-primary">Volver a Productos</a>
+</div>

@@ -36,6 +36,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Carrito/ConfirmarCompra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycml0b1xDb25maXJtYXJDb21wcmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Carrito/Factura.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycml0b1xGYWN0dXJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Carrito/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycml0b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Compra/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/FacturaEntrada/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYUVudHJhZGFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/FacturaEntrada/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYUVudHJhZGFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Facturas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +84,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Inventario/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xpbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Productos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -78,6 +106,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Productos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Proveedor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Proveedor/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Proveedor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Proveedor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Roles/AssignRole.cshtml]

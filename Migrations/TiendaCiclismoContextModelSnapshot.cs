@@ -223,6 +223,33 @@ namespace TiendaCiclismo.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TiendaCiclismo.Models.Compra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VendedorId");
+
+                    b.ToTable("Compras");
+                });
+
             modelBuilder.Entity("TiendaCiclismo.Models.Factura", b =>
                 {
                     b.Property<int>("Id")
@@ -233,6 +260,10 @@ namespace TiendaCiclismo.Migrations
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
@@ -255,6 +286,62 @@ namespace TiendaCiclismo.Migrations
                     b.ToTable("Facturas");
                 });
 
+            modelBuilder.Entity("TiendaCiclismo.Models.FacturaEntrada", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProveedorId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProveedorId");
+
+                    b.ToTable("FacturasEntrada");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Inventario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CantidadVendida")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaVenta")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalVendido")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("VendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("VendedorId");
+
+                    b.ToTable("Inventarios");
+                });
+
             modelBuilder.Entity("TiendaCiclismo.Models.Producto", b =>
                 {
                     b.Property<int>("Id")
@@ -266,6 +353,9 @@ namespace TiendaCiclismo.Migrations
                     b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("CompraId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -284,12 +374,45 @@ namespace TiendaCiclismo.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("ProveedorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompraId");
+
+                    b.HasIndex("ProveedorId");
+
                     b.ToTable("Productos");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Proveedor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Contacto")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Direccion")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Proveedores");
                 });
 
             modelBuilder.Entity("TiendaCiclismo.Models.Vendedor", b =>
@@ -369,12 +492,23 @@ namespace TiendaCiclismo.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TiendaCiclismo.Models.Compra", b =>
+                {
+                    b.HasOne("TiendaCiclismo.Models.Vendedor", "Vendedor")
+                        .WithMany()
+                        .HasForeignKey("VendedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vendedor");
+                });
+
             modelBuilder.Entity("TiendaCiclismo.Models.Factura", b =>
                 {
                     b.HasOne("TiendaCiclismo.Models.Producto", "Producto")
                         .WithMany("Facturas")
                         .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TiendaCiclismo.Models.Vendedor", "Vendedor")
@@ -388,14 +522,72 @@ namespace TiendaCiclismo.Migrations
                     b.Navigation("Vendedor");
                 });
 
+            modelBuilder.Entity("TiendaCiclismo.Models.FacturaEntrada", b =>
+                {
+                    b.HasOne("TiendaCiclismo.Models.Proveedor", "Proveedor")
+                        .WithMany()
+                        .HasForeignKey("ProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Proveedor");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Inventario", b =>
+                {
+                    b.HasOne("TiendaCiclismo.Models.Producto", "Producto")
+                        .WithMany("Inventarios")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TiendaCiclismo.Models.Vendedor", "Vendedor")
+                        .WithMany("Inventarios")
+                        .HasForeignKey("VendedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Vendedor");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Producto", b =>
+                {
+                    b.HasOne("TiendaCiclismo.Models.Compra", null)
+                        .WithMany("Productos")
+                        .HasForeignKey("CompraId");
+
+                    b.HasOne("TiendaCiclismo.Models.Proveedor", "Proveedor")
+                        .WithMany("Productos")
+                        .HasForeignKey("ProveedorId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Proveedor");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Compra", b =>
+                {
+                    b.Navigation("Productos");
+                });
+
             modelBuilder.Entity("TiendaCiclismo.Models.Producto", b =>
                 {
                     b.Navigation("Facturas");
+
+                    b.Navigation("Inventarios");
+                });
+
+            modelBuilder.Entity("TiendaCiclismo.Models.Proveedor", b =>
+                {
+                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("TiendaCiclismo.Models.Vendedor", b =>
                 {
                     b.Navigation("Facturas");
+
+                    b.Navigation("Inventarios");
                 });
 #pragma warning restore 612, 618
         }

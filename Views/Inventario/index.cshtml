@@ -1,0 +1,27 @@
+@model IEnumerable<TiendaCiclismo.Models.Inventario>
+
+<h1>Inventario</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad Vendida</th>
+            <th>Total Vendido</th>
+            <th>Vendedor</th>
+            <th>Fecha de Venta</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Producto.Nombre</td>
+                <td>@item.CantidadVendida</td>
+                <td>@item.TotalVendido.ToString("C")</td>
+                <td>@item.Vendedor.Nombre</td>
+                <td>@item.FechaVenta.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

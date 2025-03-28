@@ -16,29 +16,51 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Productos" asp-action="Index">Productos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Vendedores" asp-action="Index">Vendedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Facturas" asp-action="Index">Facturas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Roles" asp-action="Index"></a>
-                        </li>
+                        @if (!User.IsInRole("Admin") && !User.IsInRole("Vendedor"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Carrito" asp-action="Index">Carrito</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Vendedor"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Vendedores" asp-action="Index">Vendedores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Facturas" asp-action="Index">Facturas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Proveedor" asp-action="Index">Proveedores</a>
+                            </li>
+                        }
                     </ul>
-                    @await Html.PartialAsync("_LoginPartial") <!-- Aquí es donde se carga la vista parcial de inicio de sesión -->
+                    <ul class="navbar-nav ms-auto">
+                        @if (User?.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesión</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main role="main" class="container">
+    <main role="main" class="container mt-5">
         @RenderBody()
     </main>
-    <footer class="footer mt-5">
+    <footer class="footer mt-5 text-center">
         <p>&copy; @DateTime.Now.Year - TiendaCiclismo</p>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

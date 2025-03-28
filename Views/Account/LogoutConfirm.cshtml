@@ -5,7 +5,8 @@
 <div class="text-center mt-5">
     <h2>¿Seguro que deseas cerrar sesión?</h2>
 
-    <form method="post" asp-action="Logout">
+    <form asp-controller="Account" asp-action="Logout" method="post">
+        @Html.AntiForgeryToken()
         <button type="submit" class="btn btn-danger">Confirmar</button>
     </form>
 

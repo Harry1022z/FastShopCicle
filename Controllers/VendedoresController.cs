@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using TiendaCiclismo.Data;
 using TiendaCiclismo.Models;
 
@@ -16,31 +19,31 @@ namespace TiendaCiclismo.Controllers
             _context = context;
         }
 
-        // GET: Vendedores
         public async Task<IActionResult> Index()
         {
             var vendedores = await _context.Vendedores.ToListAsync();
             return View(vendedores);
         }
 
-        // GET: Vendedores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
-            var vendedor = await _context.Vendedores.FirstOrDefaultAsync(m => m.Id == id);
+            var vendedor = await _context.Vendedores
+                .Include(v => v.Facturas)
+                .Include(v => v.Inventarios)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (vendedor == null) return NotFound();
 
             return View(vendedor);
         }
 
-        // GET: Vendedores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Vendedores/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Correo,Telefono")] Vendedor vendedor)
@@ -54,7 +57,6 @@ namespace TiendaCiclismo.Controllers
             return View(vendedor);
         }
 
-        // GET: Vendedores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -65,7 +67,6 @@ namespace TiendaCiclismo.Controllers
             return View(vendedor);
         }
 
-        // POST: Vendedores/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Correo,Telefono")] Vendedor vendedor)
@@ -89,44 +90,51 @@ namespace TiendaCiclismo.Controllers
             return View(vendedor);
         }
 
-        // GET: Vendedores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
 
-            var vendedor = await _context.Vendedores.FirstOrDefaultAsync(m => m.Id == id);
+            var vendedor = await _context.Vendedores
+                .Include(v => v.Facturas)
+                .Include(v => v.Inventarios)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (vendedor == null) return NotFound();
 
             return View(vendedor);
         }
 
-        // POST: Vendedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vendedor = await _context.Vendedores.FindAsync(id);
-            if (vendedor != null)
+            var vendedor = await _context.Vendedores
+                .Include(v => v.Facturas)
+                .Include(v => v.Inventarios)
+                .FirstOrDefaultAsync(v => v.Id == id);
+
+            if (vendedor == null) return NotFound();
+
+            try
             {
+                // Eliminar las facturas asociadas
+                _context.Facturas.RemoveRange(vendedor.Facturas);
+                
+                // Eliminar los inventarios asociados
+                _context.Inventarios.RemoveRange(vendedor.Inventarios);
+
+                // Eliminar el vendedor
                 _context.Vendedores.Remove(vendedor);
+
                 await _context.SaveChangesAsync();
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Error al eliminar el vendedor: {ex.Message}");
+                return View(vendedor);
+            }
+
             return RedirectToAction(nameof(Index));
-        }
-
-        // GET: Vendedores/FacturasPorVendedor/5
-        public async Task<IActionResult> FacturasPorVendedor(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var facturas = await _context.Facturas
-                .Include(f => f.Vendedor)
-                .Where(f => f.VendedorId == id)
-                .ToListAsync();
-
-            ViewBag.Vendedor = await _context.Vendedores.FindAsync(id);
-
-            return View(facturas);
         }
 
         private bool VendedorExists(int id)

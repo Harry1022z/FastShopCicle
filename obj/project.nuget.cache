@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z/mycK1CtvQ=",
+  "dgSpecHash": "onSRkKe145g=",
   "success": true,
   "projectFilePath": "C:\\Users\\nosoy\\Documents\\Proyectos\\TiendaCiclismo\\TiendaCiclismo.csproj",
   "expectedPackageFiles": [
@@ -55,6 +55,7 @@
     "C:\\Users\\nosoy\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\nosoy\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\nosoy\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512",
+    "C:\\Users\\nosoy\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\nosoy\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.3\\pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512",
     "C:\\Users\\nosoy\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\nosoy\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

@@ -1,0 +1,20 @@
+<!-- filepath: /c:/Users/nosoy/Documents/Proyectos/TiendaCiclismo/Views/Proveedor/Create.cshtml -->
+@model TiendaCiclismo.Models.Proveedor
+
+<h1>Crear Proveedor</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" required />
+    </div>
+    <div class="form-group">
+        <label for="Contacto">Contacto</label>
+        <input type="text" class="form-control" id="Contacto" name="Contacto" />
+    </div>
+    <div class="form-group">
+        <label for="Direccion">Dirección</label>
+        <input type="text" class="form-control" id="Direccion" name="Direccion" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

@@ -77,9 +77,8 @@ namespace TiendaCiclismo.Controllers
             return View(model);
         }
 
-        // POST: Account/Logout
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: Account/Logout (Nuevo - Soluciona el error 405)
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

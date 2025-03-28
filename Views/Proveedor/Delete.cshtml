@@ -1,0 +1,40 @@
+@model TiendaCiclismo.Models.Proveedor
+
+@{
+    ViewData["Title"] = "Eliminar Proveedor";
+}
+
+<h1 class="fw-bold text-center mb-4">Eliminar Proveedor</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<div class="alert alert-warning">
+    <p>¿Estás seguro de que deseas eliminar este proveedor?</p>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+
+    <dt class="col-sm-3">Contacto</dt>
+    <dd class="col-sm-9">@Model.Contacto</dd>
+
+    <dt class="col-sm-3">Dirección</dt>
+    <dd class="col-sm-9">@Model.Direccion</dd>
+</dl>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">
+        <i class="fa fa-trash"></i> Eliminar
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

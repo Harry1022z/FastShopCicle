@@ -1,0 +1,27 @@
+@model IEnumerable<TiendaCiclismo.Models.FacturaEntrada>
+
+<h1>Facturas de Entrada</h1>
+
+<a href="/FacturaEntrada/Create" class="btn btn-primary">Crear Nueva Factura</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Proveedor</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var factura in Model)
+        {
+            <tr>
+                <td>@factura.Id</td>
+                <td>@factura.Fecha.ToShortDateString()</td>
+                <td>@factura.Proveedor.Nombre</td>
+                <td>@factura.Total.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>

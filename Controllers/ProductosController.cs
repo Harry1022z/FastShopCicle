@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiendaCiclismo.Data;
 using TiendaCiclismo.Models;
 
 namespace TiendaCiclismo.Controllers
 {
-    [Authorize(Roles = "Admin,Vendedor")]
     public class ProductosController : Controller
     {
         private readonly TiendaCiclismoContext _context;
@@ -16,33 +16,42 @@ namespace TiendaCiclismo.Controllers
             _context = context;
         }
 
-        // GET: Productos
+        // GET: Productos (Acceso público)
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Productos.ToListAsync());
+            var productos = await _context.Productos
+                .Include(p => p.Proveedor) // Incluir Proveedor
+                .ToListAsync();
+            return View(productos);
         }
 
-        // GET: Productos/Details/5
+        // GET: Productos/Details/5 (Acceso público)
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
-            var producto = await _context.Productos.FirstOrDefaultAsync(m => m.Id == id);
+            var producto = await _context.Productos
+                .Include(p => p.Proveedor) // Incluir Proveedor
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (producto == null) return NotFound();
 
             return View(producto);
         }
 
-        // GET: Productos/Create
+        // GET: Productos/Create (Protegido)
+        [Authorize(Roles = "Admin,Vendedor")]
         public IActionResult Create()
         {
+            ViewData["ProveedorId"] = new SelectList(_context.Proveedores, "Id", "Nombre");
             return View();
         }
 
-        // POST: Productos/Create
+        // POST: Productos/Create (Protegido)
         [HttpPost]
+        [Authorize(Roles = "Admin,Vendedor")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Precio,Stock,Categoria,ImagenUrl")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Precio,Stock,Categoria,ImagenUrl,ProveedorId")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -50,10 +59,12 @@ namespace TiendaCiclismo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProveedorId"] = new SelectList(_context.Proveedores, "Id", "Nombre", producto.ProveedorId);
             return View(producto);
         }
 
-        // GET: Productos/Edit/5
+        // GET: Productos/Edit/5 (Protegido)
+        [Authorize(Roles = "Admin,Vendedor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -61,13 +72,15 @@ namespace TiendaCiclismo.Controllers
             var producto = await _context.Productos.FindAsync(id);
             if (producto == null) return NotFound();
 
+            ViewData["ProveedorId"] = new SelectList(_context.Proveedores, "Id", "Nombre", producto.ProveedorId);
             return View(producto);
         }
 
-        // POST: Productos/Edit/5
+        // POST: Productos/Edit/5 (Protegido)
         [HttpPost]
+        [Authorize(Roles = "Admin,Vendedor")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Precio,Stock,Categoria,ImagenUrl")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Precio,Stock,Categoria,ImagenUrl,ProveedorId")] Producto producto)
         {
             if (id != producto.Id) return NotFound();
 
@@ -85,22 +98,28 @@ namespace TiendaCiclismo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProveedorId"] = new SelectList(_context.Proveedores, "Id", "Nombre", producto.ProveedorId);
             return View(producto);
         }
 
-        // GET: Productos/Delete/5
+        // GET: Productos/Delete/5 (Protegido)
+        [Authorize(Roles = "Admin,Vendedor")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
 
-            var producto = await _context.Productos.FirstOrDefaultAsync(m => m.Id == id);
+            var producto = await _context.Productos
+                .Include(p => p.Proveedor) // Incluir Proveedor
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (producto == null) return NotFound();
 
             return View(producto);
         }
 
-        // POST: Productos/Delete/5
+        // POST: Productos/Delete/5 (Protegido)
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,Vendedor")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

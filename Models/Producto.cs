@@ -24,7 +24,13 @@ namespace TiendaCiclismo.Models
 
         public string ImagenUrl { get; set; } = string.Empty;
 
+        // Nuevo: Relación con Proveedor
+        public int? ProveedorId { get; set; } // Opcional para evitar errores si no todos los productos tienen proveedor
+        public Proveedor? Proveedor { get; set; }
+
         // Relación inversa con Factura
         public ICollection<Factura> Facturas { get; set; } = new List<Factura>();
+
+        public ICollection<Inventario> Inventarios { get; set; } = new List<Inventario>();
     }
 }

@@ -156,3 +156,4 @@ C:\Users\nosoy\Documents\Proyectos\TiendaCiclismo\obj\Debug\net8.0\refint\Tienda
 C:\Users\nosoy\Documents\Proyectos\TiendaCiclismo\obj\Debug\net8.0\TiendaCiclismo.pdb
 C:\Users\nosoy\Documents\Proyectos\TiendaCiclismo\obj\Debug\net8.0\TiendaCiclismo.genruntimeconfig.cache
 C:\Users\nosoy\Documents\Proyectos\TiendaCiclismo\obj\Debug\net8.0\ref\TiendaCiclismo.dll
+C:\Users\nosoy\Documents\Proyectos\TiendaCiclismo\bin\Debug\net8.0\Newtonsoft.Json.dll
